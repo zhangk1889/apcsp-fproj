@@ -1,9 +1,0 @@
-#!/bin/bash
-
-echo  "Content-type: text/html\n\n"
-echo ""
-echo "<html><head><title>Hello"
-echo "</title></head><body>"
-echo "<h1>Check rpi status</h1>"
-
-echo "<pre>$(rpistatus)</pre>"
