@@ -1,40 +1,40 @@
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main(int argc, char* argv[])
+char *to_morse(char *);
+
+int main(int argc, char **argv)
 {
- char *alphabet[]={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
-                    "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-",
-     "...-",".--","-..-","-.--","--.."};
- char *number[]={"-----",".----","..---","...--","....-",".....","-....","--...","---..","----."};
- 
-
- int i;
- char str[1000],str1[1000];
- gets(str); 
-i=0;
-  while(str[i]!='\0')
-  {
- if(str[i]!=' '&&(!isdigit(str[i])))  
- {
-     printf("%s ",alphabet[toupper(str[i])-65]);  
- } 
-    if(str[i]==' ')
+    char *temp;
+    for (int counter = 1; counter < argc; counter++)
     {
-     printf(" ");
-    }
-    if(isdigit(str[i])&&str[i]!=' ')
-    {
-      printf("%s ",number[str[i]-48]);    
+        temp = to_morse(argv[counter]);
+        printf("%s", temp);
+        free(temp);
     }
 
- 
-   i++;
-  }
-  printf("\n");
- 
+    return 0;
 }
 
+char *to_morse(char *str)
+{
+    char *morse[27] =  {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+    char *output=malloc((strlen(str)*5)+1);
+    output[0] = '\0';
+    char character;
 
+    for (int counter = 0; str[counter] != '\0'; counter++)
+    {
+        if(isalpha(str[counter]))
+        {
+            character = toupper(str[counter]);
+            strcat(output,morse[character-'A']);
+            strcat(output," ");
+        }
+    }
 
+    return output;
+
+    }
