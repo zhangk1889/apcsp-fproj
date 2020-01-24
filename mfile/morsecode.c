@@ -7,6 +7,14 @@ char *to_morse(char *);
 
 int main(int argc, char **argv)
 {
+ 
+  if (argc == 1 || argc >= 20)
+  {
+  printf ("You either didn't enter anything or typed in too much. Make sure that you've typed something in or didn't write to much  before hitting go.\n");
+  }
+  
+  else
+{
     char *temp;
     for (int counter = 1; counter < argc; counter++)
     {
@@ -14,7 +22,17 @@ int main(int argc, char **argv)
         printf("%s", temp);
         free(temp);
     }
-
+    
+    argc = argc - 1;
+    if (argc == 1)
+    {
+  printf ("\nYou've inputted %d word.\n", argc);
+    }
+    else
+    {
+      printf ("\nYou've inputted %d words.\n", argc);
+    }
+}
     return 0;
 }
 
